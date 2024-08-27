@@ -1,0 +1,37 @@
+1. Soru için
+
+SQLite 3 Database i kullanılmıştır.
+ORM de indexleme kullanılmıştır.
+Redis Cache mekanizması entegre edilmiştir
+Rastgele 1000 kullanıcı eklenmiştir.
+SQL sorgusu optimize edilip cache e göre sorgu çalışması sağlanmıştır.
+Kullanıcıların bilgileri tablo halinde listelenmiş ve kullanıcıya göre arama özelliği eklenmiştir.
+
+python manage.py runserver komutu çalıştırıldıktan sonra http://127.0.0.1:8000/ adresinden listeye erişebilirsiniz  veya sizin Starting development server bilgisine göre adres değişebilir.
+
+
+
+2. Soru için 
+
+öncelikle ER diyagramı için pygraphivz  ve django-extensions kullanılmıştır
+pip install django-extensions pygraphviz
+
+ ER diyagramı erd.png olarak kaydedilmiştir.
+ Proje django kullanılarak yapılmıştır. SQLite 3 database ile entegra edilmiştir.
+ Rastgele 200 kayıt oluşturulmuştur. 
+ Django Admin Paneli ile tüm kayıtların listesine erişilinebilir.
+ python manage.py runserver  kodu çalıştırıldıktan sonra 
+ http://127.0.0.1:8000/admin
+
+ Person ve Task tablosu PersonTaskAssignment tablosunda birleştirilmiştir.
+ Hangi kullancıya hangi task kaç kere atılmışsa bunu listelenmesi sağlanmış ve personel ismine göre arama eklenmiştir.
+
+ python manage.py runserver  kodu çalıştırıldıktan sonra 
+
+http://127.0.0.1:8000/tasks/task-frequencies/ adresinden tabloya erişebilirsiniz.
+
+
+ÖNERİ:
+
+Verileri daha verimli bir şekilde elde etmek için kodsal anlamda yapılacak olanlardan indexleme ve cache mekanizması kurma gibi özellikler eklenebilir.Burda Asıl düzenlenmesi gereken kısım veritabanı modelleri olmalı.
+Bir tabloda sonsuz sayıda veri tutamayız tarihe göre verileri bölerek ayrı tablolara atmalı ve sorgularımızı buna göre düzenlemeliyiz. Otomatik güncellenecek şekilde bir veritabanı inşa edebiliriz. Kişi son lokasyonu değişince bizim sorgu atacağımız tabloya taşınmalı konum değiştiğinde eski konumunu ayrı tabloya yeni konumunu bizim sorgu tablosuna taşımalıyız.Zaman tabanlı verilerin yönetimi için InfluxDB gibi bir zaman serisi veritabanı kullanılabilir.Okuma ve yazma işlemlerini ayrı veritabanlarına taşıyabiliriz. Burda çözüm %30 kodsal anlamda olur bu da redis elasticsearch cemcached gibi  cache kullanmak , veritabanı sorgularını optimize etmek  ve senkron asenkron yapı kullanmak gibi. Geri kalan %70 lik çözüm veritabanı tasarımı ve data saklama prensibine göre düşünülmelidir
